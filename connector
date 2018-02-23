@@ -1,6 +1,19 @@
 connector:
-  connector是个重量级的组件，依赖 session, server , pushScheduler, connection组件.  可以从connector.js的 start()方法中看到， 
-在开始时就将 server,session,connection组件作为属性保存在 connector对象中.
+    connector是个重量级的组件，依赖 session, server , pushScheduler, connection组件.  可以从connector.js的 start()方法中看到，在开始时就将 server,
+session,connection组件作为属性保存在 connector对象中.
   
-  connector 负责：
-      创建底层的传输层, 监听配置的 clientPort， 将客户端请求绑定到对应的handler ， 以及管理客户端连接。
+connector 负责：
+    创建底层的传输层, 监听配置的 clientPort， 将客户端请求绑定到对应的handler ， 以及管理客户端连接。
+      
+
+    在connector的 start()方法中，将 server, session, connection组件作为属性保存在 connector组件中， 并检查这些组件是否能被加载，如未被加载则会直接
+退出启动过程。
+
+    在connector的 afterStart()方法中，调用了 connector/hybridconnector.js  的 start()方法.   注：pomelo提供了 4 个类型的connector,   分别是：
+hybridconnector，mqttconnector,sioconnector,udpconnector， 在connector组件的afterStart()方法中具体启动的是哪个类型的connector，取决于对connector
+的配置项："connectorConfig" (参考app.js)
+
+
+
+
+
