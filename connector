@@ -1,5 +1,6 @@
 connector:
-  connector是个重量级的组件，依赖 session, server , pushScheduler, connection组件.  可以从connector.js的 start()方法中看到， 在开始时就将 server,session,connection组件作为属性保存在 connector对象中.
+  connector是个重量级的组件，依赖 session, server , pushScheduler, connection组件.  可以从connector.js的 start()方法中看到， 
+在开始时就将 server,session,connection组件作为属性保存在 connector对象中.
   
   connector 负责：
       创建底层的传输层, 监听配置的 clientPort， 将客户端请求绑定到对应的handler ， 以及管理客户端连接。
